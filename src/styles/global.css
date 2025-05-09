@@ -1,0 +1,413 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  /* Color Palette */
+  --color-primary: #003366;       /* Deep Academic Blue */
+  --color-accent: #005599;        /* Lighter Accent Blue */
+  --color-text-dark: #333333;     /* Dark Grey for Body Text */
+  --color-text-light: #555555;    /* Slightly Lighter Grey */
+  --color-background-light: #f8f8f8; /* Off-white Background */
+  --color-border: #cccccc;        /* Light Grey Border */
+  --color-white: #ffffff;         /* White */
+  --color-input-bg: #ffffff;      /* White background for inputs */
+  --color-input-border: #dddddd;  /* Light grey border for inputs */
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--color-text-dark);
+  background-color: var(--color-white);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+  color: var(--color-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.75em; }
+h4 { font-size: 1.5em; }
+h5 { font-size: 1.25em; }
+h6 { font-size: 1em; }
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Basic container for main content for consistency */
+.main-content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+
+/* --- Header Styles --- */
+header {
+  background-color: var(--color-primary);
+  padding: 1rem 0;
+  color: var(--color-white);
+}
+
+header .header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between; /* Keep space between title and the rest */
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 1rem; /* Add gap between items in header container */
+}
+
+header .site-title a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+}
+
+ header .site-title a:hover {
+     text-decoration: underline;
+ }
+
+ .header-right-section { /* Style for the container holding nav, search, language */
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Space between nav, search, and language switch */
+    flex-wrap: wrap; /* Allow wrapping within this section */
+    justify-content: center; /* Center items if they wrap */
+ }
+
+
+header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+header nav a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+header .site-title a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+  display: flex; /* Keep this */
+  align-items: center; /* Keep this - this is the primary vertical aligner */
+  gap: 0.8rem; /* Keep this - space between logo and text */
+  /* You might add some slight padding/margin adjustments here if needed after inspection */
+}
+
+/* Style for the lab logo image */
+.lab-logo {
+    height: 40px; /* Set a fixed height for the logo (adjust as needed) */
+    width: auto; /* Maintain aspect ratio */
+    display: block; /* Add this line */
+    /* You might also check/reset default margin/padding if they exist */
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Footer Styles --- */
+footer {
+   background-color: var(--color-background-light);
+   color: var(--color-text-light);
+   padding: 2rem 0;
+   margin-top: 3rem;
+   text-align: center;
+   font-size: 0.9em;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+footer a {
+  color: var(--color-text-light);
+  text-decoration: none;
+}
+
+ footer a:hover {
+    color: var(--color-primary);
+ }
+
+ /* --- Employee Grid Styles --- */
+.employee-grid {
+  display: grid;
+  /* Define grid columns: repeat(auto-fit, minmax(min-width, max-width)) */
+  /* This creates columns that are at least 250px wide and automatically fit */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem; /* Space between grid items */
+  margin-top: 2rem; /* Space above the grid */
+}
+
+/* --- Employee Card Styles --- */
+.employee-card {
+  background-color: var(--color-white); /* Card background */
+  border: 1px solid var(--color-border); /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 1.5rem; /* Inner spacing */
+  text-align: center; /* Center content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  display: flex; /* Use flexbox for content alignment within the card */
+  flex-direction: column; /* Stack image, name, title */
+  align-items: center; /* Center content horizontally */
+}
+
+.employee-picture {
+  width: 150px; /* Set size for the picture */
+  height: 150px;
+  border-radius: 50%; /* Make the picture round */
+  object-fit: cover; /* Crop image to fit */
+  margin-bottom: 1rem; /* Space below the picture */
+}
+
+.employee-name {
+  font-size: 1.3em;
+  margin-top: 0;
+  margin-bottom: 0.5rem; /* Space below name */
+  color: var(--color-primary); /* Use primary color for name */
+}
+
+.employee-title {
+  font-size: 1em;
+  color: var(--color-text-light); /* Use lighter text color for title */
+  margin: 0;
+}
+
+/* --- Hero Section Styles --- */
+.hero {
+  background-color: var(--color-background-light); /* Light background */
+  padding: 4rem 0; /* More padding top and bottom */
+  text-align: center; /* Center content */
+  margin-bottom: 2rem; /* Space below hero */
+}
+
+.hero h1 {
+  color: var(--color-primary); /* Primary color for hero title */
+  margin-top: 0; /* Remove top margin for hero title */
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: var(--color-text-dark); /* Dark text color for description */
+  max-width: 800px; /* Limit width for readability */
+  margin: 0 auto; /* Center the paragraph */
+  font-size: 1.1em;
+}
+
+
+/* --- Filter Buttons Styles --- */
+.filter-buttons {
+  text-align: center; /* Center the buttons */
+  margin-bottom: 2rem; /* Space below buttons */
+}
+
+.filter-buttons button {
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  margin: 0.25rem; /* Space between buttons */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.active { /* Active state */
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+
+/* --- Publication List/Grid Styles --- */
+/* Using Flexbox for a simple stack of wide cards */
+.publication-list {
+  display: flex;
+  flex-direction: column; /* Stack cards vertically */
+  gap: 1.5rem; /* Space between cards */
+}
+
+/* --- Publication Card Styles --- */
+.publication-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex; /* Use flexbox if you wanted content and maybe a thumbnail side-by-side */
+  align-items: center; /* Vertically align content */
+  gap: 1.5rem; /* Space between content and potential thumbnail */
+  transition: opacity 0.3s ease; /* Smooth transition for filtering */
+}
+
+.publication-card .card-content {
+  flex-grow: 1; /* Allow content to take up available space */
+}
+
+
+.publication-card .publication-title-link {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--color-primary); /* Primary color for title link */
+  text-decoration: none; /* No underline by default */
+}
+
+.publication-card .publication-title-link:hover {
+  text-decoration: underline; /* Underline on hover */
+  color: var(--color-accent); /* Accent color on hover */
+}
+
+.publication-card .publication-authors {
+  font-size: 1em;
+  color: var(--color-text-dark);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.publication-card .publication-meta {
+  font-size: 0.9em;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* Style for hidden cards during filtering */
+.publication-card.hidden {
+  display: none; /* Hide the element */
+}
+
+/* --- Contact Page Styles --- */
+.contact-info {
+  margin-bottom: 2rem;
+  line-height: 1.8; /* Improve readability of info block */
+}
+
+.contact-info h2 {
+  color: var(--color-primary);
+}
+
+.contact-info p strong {
+  color: var(--color-text-dark);
+}
+
+.contact-form-section h2 {
+  color: var(--color-primary);
+  margin-top: 2rem; /* Space above the form section heading */
+}
+
+
+/* --- Contact Form Styles --- */
+.contact-form {
+  display: grid;
+  gap: 1rem; /* Space between form groups */
+  max-width: 600px; /* Limit form width for better appearance */
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-white);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column; /* Stack label and input */
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-dark);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  padding: 0.8rem;
+  border: 1px solid var(--color-input-border);
+  border-radius: 4px;
+  font-size: 1em;
+  color: var(--color-text-dark);
+  background-color: var(--color-input-bg);
+  width: 100%; /* Make inputs take full width of their container */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent); /* Highlight on focus */
+  box-shadow: 0 0 0 0.2rem rgba(0, 85, 153, 0.25); /* Optional focus glow using accent color */
+}
+
+.contact-form textarea {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+
+.submit-button {
+  display: inline-block; /* Make button inline-block */
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-start; /* Align button to the left in flex container */
+}
+
+.submit-button:hover {
+  background-color: var(--color-accent); /* Change color on hover */
+}
+

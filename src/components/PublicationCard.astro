@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    publication: CollectionEntry<'publications'>; // Expecting a publication entry from src/content
+}
+
+const { publication } = Astro.props;
+const { title, authors, publisher, year, url, categories } = publication.data;
+const slug = publication.slug; // Get the slug for potential internal links later if needed
+---
+
+<div class="publication-card" data-categories={categories.join(',')}>
+  <div class="card-content">
+    <h2>
+      <a href={url} target="_blank" rel="noopener noreferrer" class="publication-title-link">
+        {title}
+      </a>
+    </h2>
+    <p class="publication-authors">{authors.join(', ')}</p>
+    <p class="publication-meta">{publisher}{year ? `, ${year}` : ''}</p>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import labLogo from '../assets/vinca_logo.png';
+
+const pageTitle = "Department of Chemical Dynamics and Permanent Education";
+const logoWidth = 50;
+const logoHeight = 50;
+---
+
+<header>
+  <div class="header-container">
+    <div class="site-title">
+      <a href="/">
+        <Image
+          src={labLogo}
+          alt="Your Research Lab Logo"
+          width={logoWidth}
+          height={logoHeight}
+          class="lab-logo"
+        />
+        {pageTitle}
+      </a>
+    </div>
+
+    <div class="header-right-section">
+      <nav aria-label="Main Navigation">
+        <ul>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/research">Research</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      </div>
+    </div>
+  </div>
+</header>
