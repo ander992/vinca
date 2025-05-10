@@ -13,7 +13,8 @@ const { employee } = Astro.props;
 ---
 
 <div class="employee-card">
-    <Image src={employee.imageUrl} alt={`Picture of ${employee.name}`} width={150} height={150} class="employee-picture" />
+    <!-- <Image src={employee.imageUrl} alt={`Picture of ${employee.name}`} width={150} height={150} class="employee-picture" /> -->
+    <img src={employee.imageUrl} alt={`Picture of ${employee.name}`} width="150" height="150" class="employee-picture" />
     <h3 class="employee-name">{employee.name}</h3>
     <p class="employee-title">{employee.title}</p>
     <a href={employee.email}>{employee.email}</a>
