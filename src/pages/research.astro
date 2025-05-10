@@ -1,6 +1,81 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
 const pageTitle = "Research";
+const allPublications = await getCollection('publications');
+const allCategories: string[] = allPublications.flatMap((pub: CollectionEntry<'publications'>) => pub.data.categories || []);
+const uniqueCategories = ['All', ...new Set(allCategories)].sort();
 ---
+
 <BaseLayout pageTitle={pageTitle}>
+  <Hero
+    title="Leading Research in Chemical Dynamics"
+    description="Explore our groundbreaking work across various fields of chemical science. Our research aims to push the boundaries of knowledge and address critical challenges."
+  />
+  <div class="main-content-container">
+    <h1>Recent Publications</h1>
+    <div class="filter-buttons" id="filter-buttons">
+      {uniqueCategories.map((category: string) => ( // Explicitly type category
+        <button data-category={category === 'All' ? 'all' : category.toLowerCase()}>
+          {category}
+        </button>
+      ))}
+    </div>
+    <div class="publication-list" id="publication-list">
+      {allPublications.map((pub: CollectionEntry<'publications'>) => ( // Explicitly type pub
+        <PublicationCard publication={pub} />
+      ))}
+    </div>
+  </div>
+  <script>
+    const filterButtonsContainer = document.getElementById('filter-buttons');
+    const publicationList = document.getElementById('publication-list');
+
+    if (filterButtonsContainer && publicationList) {
+        const publicationCards = publicationList.querySelectorAll('.publication-card');
+
+        filterButtonsContainer.addEventListener('click', (event) => {
+            // Cast the event.target to HTMLElement to access its properties
+            const target = event.target as HTMLElement;
+
+            // Check if a button was clicked
+            if (target && target.tagName === 'BUTTON') {
+                const selectedCategory = target.getAttribute('data-category');
+
+                // Remove 'active' class from all buttons
+                filterButtonsContainer.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                // Add 'active' class to the clicked button
+                target.classList.add('active');
+
+                // Filter publications
+                publicationCards.forEach(card => {
+                    const cardCategories = card.getAttribute('data-categories')?.toLowerCase().split(',') || [];
+
+                    if (selectedCategory === 'all') {
+                        card.classList.remove('hidden'); // Show all cards
+                    } else {
+                        // Check if the card's categories include the selected category
+                        if (cardCategories.includes(selectedCategory!)) { // Use non-null assertion or check
+                            card.classList.remove('hidden'); // Show matching card
+                        } else {
+                            card.classList.add('hidden'); // Hide non-matching card
+                        }
+                    }
+                });
+            }
+        });
+
+        // Optional: Set 'All' button as active on initial load
+        const allButton = filterButtonsContainer.querySelector('button[data-category="all"]');
+        if (allButton) {
+            allButton.classList.add('active');
+        }
+    }
+  </script>
 </BaseLayout>

@@ -1,15 +1,14 @@
 ---
 import { Image } from 'astro:assets';
-
 interface Props {
     employee: {
         name: string;
         title: string;
+        email: string;
         imageUrl: string;
         orcidUrl: string;
     };
 }
-
 const { employee } = Astro.props;
 ---
 
@@ -17,4 +16,5 @@ const { employee } = Astro.props;
     <Image src={employee.imageUrl} alt={`Picture of ${employee.name}`} width={150} height={150} class="employee-picture" />
     <h3 class="employee-name">{employee.name}</h3>
     <p class="employee-title">{employee.title}</p>
+    <a href={employee.email}>{employee.email}</a>
 </div>

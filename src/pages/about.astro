@@ -1,6 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import EmployeeCard from '../components/EmployeeCard.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
 const pageTitle = "About Us";
+const allEmployees = await getCollection('employees');
 ---
 <BaseLayout pageTitle={pageTitle}>
+    <Hero
+    title="About Us"
+    description="Explore our rich history across various fields of science and meet our team of experts."
+  />
+  <div class="main-content-container">
+    <h1>Our history</h1>
+    <p>Nulla deserunt amet quia debitis. Sapiente quo est architecto dignissimos corporis beatae sint earum. Ut deserunt labore et et. Et sed dolorum vero est odit voluptatum quod numquam. Dolores architecto quod deleniti adipisci. Voluptas ut veritatis id quas ab at.
+        Libero recusandae rerum in reiciendis ut porro ipsum. Pariatur aliquam voluptatem sunt cumque laudantium. Ut unde ab totam sint culpa. Non vel corrupti non deserunt eos quod voluptas qui. Nostrum eos ipsum doloremque cupiditate vel soluta. Esse iste recusandae illo dignissimos.
+        Itaque saepe eum aliquam consequatur repudiandae facilis iste. Ullam qui sequi repudiandae velit hic et sit. Eaque consequatur eos odio sit aliquid vel omnis. Nesciunt dolores quae similique vel ex aut ipsa et.
+        Voluptates ea doloremque iure ipsam aut at. Id cum eum quidem est nulla voluptate dicta. Unde quasi est voluptatum.
+        Eum quos eius soluta hic eveniet. Perferendis molestiae et nostrum officiis labore quibusdam distinctio. Cupiditate vel et aperiam qui quidem aut blanditiis. Dolorem non voluptatibus quia corporis aut. Cupiditate et quo nihil vitae distinctio earum. Consequatur ipsam eos laudantium molestiae.
+    </p>
+    <h1>Our Team</h1>
+    <div class="employee-grid">
+         {
+        allEmployees.map((employee: { data: { name: string; title: string; email: string; imageUrl: string; orcidUrl: string; }; }) => (
+          <EmployeeCard employee={employee.data} />
+        ))
+      }
+    </div>
+  </div>
 </BaseLayout>
